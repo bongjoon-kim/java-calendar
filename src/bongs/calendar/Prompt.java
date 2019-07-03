@@ -4,13 +4,6 @@ import java.util.Scanner;
 
 public class Prompt {
 
-	/*
-	* 월을 입력하면 해당월의 달력을 출력한다.
-	* 달력의 모양은 1단계에서 작성한 모양으로 만든다.
-	* 1일은 일요일로 정해도 무방하다.
-	* -1을 입력받기 전까지 반복 입력받는다.
-	* 프롬프트를 출력한다.
-	*/
 	public static final String PROMPT = "cal> ";
 	
 	public static void main(String[] args) {
@@ -19,10 +12,17 @@ public class Prompt {
 		Scanner sc = new Scanner(System.in);
 		Calendar cal = new Calendar();
 		
+		int year = -1;
+		int month = -1;
+		
 		while (true) {
+			System.out.println("년도를 입력하세요.");
+			System.out.print("YEAR > ");
+			year = sc.nextInt();
+			
 			System.out.println("월을 입력하세요.");
-			System.out.print(PROMPT);
-			int month = sc.nextInt();
+			System.out.print("MONTH > ");
+			month = sc.nextInt();
 			
 			if (month == -1) {
 				break;
@@ -32,7 +32,7 @@ public class Prompt {
 				continue;
 			}			
 				
-			cal.printCalendar(2017, month);
+			cal.printCalendar(year, month);
 		}
 		
 		System.out.println("Bye~");
