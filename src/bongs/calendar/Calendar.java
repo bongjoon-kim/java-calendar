@@ -25,13 +25,19 @@ public class Calendar {
 		Scanner sc = new Scanner(System.in);
 		Calendar cal = new Calendar();
 		
-		System.out.println("반복횟수를 입력하세요.");
-		int repeat = sc.nextInt();		
-		
-		for (int i = 0; i < repeat; i++) {
+		while (true) {
 			System.out.println("달을 입력하세요.");
+			System.out.print("cal> ");
 			int month = sc.nextInt();
 			
+			if (month == -1) {
+				break;
+			}
+			
+			if (month < 1 || month > 12) {
+				continue;
+			}			
+				
 			System.out.printf("%d월의 마지막 날은 %d일 입니다.\n\n", month, cal.getMaxdayOfMonth(month));
 		}
 		
