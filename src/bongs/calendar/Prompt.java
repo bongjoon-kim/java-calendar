@@ -21,21 +21,26 @@ public class Prompt {
 			System.out.print("YEAR > ");
 			year = sc.nextInt();
 			
+			if (year == -1) {
+				break;
+			}			
+			
 			System.out.println("월을 입력하세요.");
 			System.out.print("MONTH > ");
 			month = sc.nextInt();
-			
-			System.out.println("요일을 입력하세요.(sun, mon, tue, wed, thu, fri, sat)");
-			System.out.print("Weekday > ");
-			weekday = sc.next();			
 			
 			if (month == -1) {
 				break;
 			}
 			
 			if (month < 1 || month > 12) {
+				System.out.println("잘못된 입력입니다.");
 				continue;
-			}			
+			}					
+			
+			System.out.println("요일을 입력하세요.(sun, mon, tue, wed, thu, fri, sat)");
+			System.out.print("Weekday > ");
+			weekday = sc.next();			
 				
 			cal.printCalendar(year, month, weekday);
 		}
