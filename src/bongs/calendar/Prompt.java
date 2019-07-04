@@ -14,7 +14,6 @@ public class Prompt {
 		
 		int year = -1;
 		int month = -1;
-		String weekday = "sun";
 		
 		while (true) {
 			System.out.println("년도를 입력하세요.");
@@ -38,11 +37,7 @@ public class Prompt {
 				continue;
 			}					
 			
-			System.out.println("요일을 입력하세요.(sun, mon, tue, wed, thu, fri, sat)");
-			System.out.print("Weekday > ");
-			weekday = sc.next();			
-				
-			cal.printCalendar(year, month, weekday);
+			cal.printCalendar(year, month);
 		}
 		
 		System.out.println("Bye~");

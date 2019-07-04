@@ -5,9 +5,9 @@ public class Calendar {
 	public static final int[] MAXDAY_OF_MONTH = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 	public static final int[] LEAF_MAXDAY_OF_MONTH = {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 	
-	public void printCalendar(int year, int month, String weekday) {
+	public void printCalendar(int year, int month) {
 		
-		int week = getWeekday(weekday);
+		int week = getWeekday(year, month);
 		
 		System.out.printf("    <<%4d년%3d월>>\n", year, month);
 		System.out.println(" SU MO TU WE TH FR SA");
@@ -26,23 +26,45 @@ public class Calendar {
 		System.out.println();
 	}
 	
-	public int getMaxdayOfMonth(int year, int month) {
+	public boolean getLeafYear(int year) {
 		if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}	
+	
+	public int getMaxdayOfMonth(int year, int month) {
+		if (getLeafYear(year)) {
 			return LEAF_MAXDAY_OF_MONTH[month - 1];
 		} else {
 			return MAXDAY_OF_MONTH[month - 1];
 		}
 	}
 	
-	public int getWeekday (String weekday) {
-		if (weekday.equals("sun"))	return 0;
-		else if (weekday.equals("mon"))	return 1;
-		else if (weekday.equals("tue"))	return 2;
-		else if (weekday.equals("wed"))	return 3;
-		else if (weekday.equals("thu"))	return 4;
-		else if (weekday.equals("fri"))	return 5;
-		else if (weekday.equals("sat"))	return 6;
-		else return 0;
+	public int getWeekday (int year, int month) {
+	// 계산기준일: 1970.1.1 목요일
+		int sYear = 1970;
+		int sWeekday = 4;	//목요일
+		int countDay = 0;
+		int Weekday = 0;
+		
+		//년도 일수
+		for (int i = sYear; i < year; i++) {
+			if (getLeafYear(i)) {
+				countDay += 366;
+			} else {
+				countDay += 365;
+			}
+		}
+		
+		//월일수
+		for (int i = 1; i < month; i++) {
+			countDay += getMaxdayOfMonth(year, i);
+		}		
+			
+		Weekday = (countDay + sWeekday) % 7;
+		return Weekday;
 	}
 
 }
