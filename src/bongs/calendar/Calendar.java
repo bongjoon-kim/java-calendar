@@ -1,9 +1,24 @@
 package bongs.calendar;
 
+import java.util.HashMap;
+
 public class Calendar {
 	
 	public static final int[] MAXDAY_OF_MONTH = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 	public static final int[] LEAF_MAXDAY_OF_MONTH = {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+	private HashMap<String, String> planner;
+	
+	public Calendar() {
+		HashMap<String, String> planner = new HashMap<>();
+	}
+	
+	public void setPlan(String date, String plan) {
+		planner.put(date, plan);
+	}
+	
+	public String getPlan(String date) {
+		return planner.get(date);
+	}
 	
 	public void printCalendar(int year, int month) {
 		
@@ -43,9 +58,9 @@ public class Calendar {
 	}
 	
 	public int getWeekday (int year, int month) {
-	// 계산기준일: 1970.1.1 목요일
-		int sYear = 1970;
-		int sWeekday = 4;	//목요일
+	// 계산기준일: 1700.1.1 금요일
+		int sYear = 1700;
+		int sWeekday = 5;	//금요일
 		int countDay = 0;
 		int Weekday = 0;
 		
