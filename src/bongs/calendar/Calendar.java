@@ -6,18 +6,18 @@ public class Calendar {
 	
 	public static final int[] MAXDAY_OF_MONTH = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 	public static final int[] LEAF_MAXDAY_OF_MONTH = {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-	private HashMap<String, String> planner;
+	private HashMap<String, String> planMap;
 	
 	public Calendar() {
-		HashMap<String, String> planner = new HashMap<>();
+		planMap = new HashMap<String, String>();
 	}
 	
 	public void setPlan(String date, String plan) {
-		planner.put(date, plan);
+		planMap.put(date, plan);
 	}
 	
 	public String getPlan(String date) {
-		return planner.get(date);
+		return date + " 일의 일정 : " + planMap.get(date);
 	}
 	
 	public void printCalendar(int year, int month) {
