@@ -64,15 +64,16 @@ public class Prompt {
 		System.out.println("[새 일정을 등록하세요.]");
 		System.out.print("날짜입력 > ");
 		String strDate = sc.next();
-
-		String strPlan = "";
+		sc.nextLine();	//next()입력시 마지막의 엔터가 다음에 오는 nextLine() 에 입력되는 걸 방지하기 위함.
+		
 		System.out.print("일정입력 > ");
-		while (sc.hasNext()) {
-			String strTmp = sc.nextLine(); 
-			if (strTmp.equals(";")) 
-				break; 
-			strPlan += strTmp; 
-		}
+		String strPlan = sc.nextLine(); 
+//		while (sc.hasNext()) {
+//			String strTmp = sc.nextLine(); 
+//			if (strTmp.equals(";")) 
+//				break; 
+//			strPlan += strTmp; 
+//		}
 
 		cal.setPlan(strDate, strPlan);
 	}
