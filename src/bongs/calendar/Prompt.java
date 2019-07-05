@@ -13,22 +13,20 @@ public class Prompt {
 		printMenu();
 
 		String sel = "";
-		while (true) {
+		
+		Boolean isLoop = true;
+		while (isLoop) {
 			System.out.println("명령 (1, 2, 3, h, q)");
 			sel = sc.next();
-
-			if (sel.equals("1"))
-				savePlan(sc, cal);
-			else if (sel.equals("2"))
-				searchPlan(sc, cal);
-			else if (sel.equals("3"))
-				CalendarPrint(sc, cal);
-			else if (sel.equals("h"))
-				printMenu();
-			else if (sel.equals("q"))
-				break;
-			else
-				System.out.println("잘못된 입력입니다.");
+			
+			switch (sel) {
+				case "1":	savePlan(sc, cal);	break;
+				case "2":	searchPlan(sc, cal);	break;
+				case "3":	CalendarPrint(sc, cal);	break;
+				case "h":	printMenu();	break;
+				case "q":	isLoop = false;	break;
+				default:	System.out.println("잘못된 입력입니다.");	break;
+			}
 		}
 
 		System.out.println("Thank you. Bye~");
@@ -68,12 +66,6 @@ public class Prompt {
 		
 		System.out.print("일정입력 > ");
 		String strPlan = sc.nextLine(); 
-//		while (sc.hasNext()) {
-//			String strTmp = sc.nextLine(); 
-//			if (strTmp.equals(";")) 
-//				break; 
-//			strPlan += strTmp; 
-//		}
 
 		cal.setPlan(strDate, strPlan);
 	}
