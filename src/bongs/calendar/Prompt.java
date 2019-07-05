@@ -16,13 +16,14 @@ public class Prompt {
 		
 		Boolean isLoop = true;
 		while (isLoop) {
-			System.out.println("명령 (1, 2, 3, h, q)");
+			System.out.println("명령 (1, 2, 3, 4, h, q)");
 			sel = sc.next();
 			
 			switch (sel) {
 				case "1":	savePlan(sc, cal);	break;
 				case "2":	searchPlan(sc, cal);	break;
 				case "3":	CalendarPrint(sc, cal);	break;
+				case "4":	allPlanPrint(cal);	break;
 				case "h":	printMenu();	break;
 				case "q":	isLoop = false;	break;
 				default:	System.out.println("잘못된 입력입니다.");	break;
@@ -31,6 +32,10 @@ public class Prompt {
 
 		System.out.println("Thank you. Bye~");
 		sc.close();
+	}
+
+	private static void allPlanPrint(Calendar cal) {
+		cal.getAllPlan();
 	}
 
 	private static void CalendarPrint(Scanner sc, Calendar cal) {
@@ -83,6 +88,7 @@ public class Prompt {
 		System.out.println("| 1. 일정 등록         |");
 		System.out.println("| 2. 일정 검색         |");
 		System.out.println("| 3. 달력 보기         |");
+		System.out.println("| 4. 모든 일정         |");
 		System.out.println("| h. 도움말            |");
 		System.out.println("| q. 종료              |");
 		System.out.println("+----------------------+");

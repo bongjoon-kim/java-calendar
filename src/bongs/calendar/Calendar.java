@@ -1,6 +1,8 @@
 package bongs.calendar;
 
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Set;
 
 public class Calendar {
 	
@@ -17,8 +19,27 @@ public class Calendar {
 	}
 	
 	public String getPlan(String date) {
-		return date + " 일의 일정 : " + planMap.get(date);
+		
+		if (planMap.get(date) != null) {
+			return date + " 일의 일정 : " + planMap.get(date);
+		} else {
+			return date + " 일의 일정 : 일정이 없습니다.";
+		}
 	}
+	
+	public void getAllPlan() {
+		
+		System.out.println("<전체 일정>");
+		
+		Set<String> keys = planMap.keySet();
+		
+		Iterator<String> iter = keys.iterator();
+		while (iter.hasNext()) {
+			String key = iter.next();
+			String value = planMap.get(key);
+			System.out.println(key + " : " + value);
+		}		
+	}	
 	
 	public void printCalendar(int year, int month) {
 		
