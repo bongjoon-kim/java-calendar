@@ -17,6 +17,16 @@ public class Calendar {
 	
 	public Calendar() {
 		planMap = new HashMap<String, String>();
+		
+		FileWriter fw;
+		try {
+			fw = new FileWriter("Calendar.dat", true);
+			fw.close();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		try {
 			BufferedReader br = new BufferedReader(new FileReader("Calendar.dat"));
 			while(true) {
