@@ -1,5 +1,10 @@
 package bongs.calendar;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
@@ -12,10 +17,38 @@ public class Calendar {
 	
 	public Calendar() {
 		planMap = new HashMap<String, String>();
+		try {
+			BufferedReader br = new BufferedReader(new FileReader("Calendar.dat"));
+			while(true) {
+				String line = null;
+				try {
+					line = br.readLine();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				if (line == null)	break;
+				String[] str = line.split(",");
+				planMap.put(str[0], str[1]);
+			}
+			try {
+				br.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void setPlan(String date, String plan) {
 		planMap.put(date, plan);
+		try {
+			FileWriter fw = new FileWriter("Calendar.dat", true);
+			fw.write(date + "," + plan + "\n");
+			fw.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public String getPlan(String date) {
